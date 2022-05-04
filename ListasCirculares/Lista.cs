@@ -24,7 +24,7 @@ namespace ListasCirculares
         {
             nodoInicial.Enlace = nodoInicial;
         }
-        public String RecorrerLista()
+        public string RecorrerLista()
         {
             string datosLista = "";
             nodoActual = nodoInicial;
@@ -84,7 +84,7 @@ namespace ListasCirculares
             if (ValidaVacio() == false)
             {
                 Nodo nodoBusqueda = nodoInicial;
-                while (nodoBusqueda != nodoInicial && nodoBusqueda.Enlace.Siguiente != dato)
+                while (nodoBusqueda.Enlace != nodoInicial && nodoBusqueda.Enlace.Siguiente != dato)
                 {
                     nodoBusqueda = nodoBusqueda.Enlace;
                     if (nodoBusqueda.Enlace.Siguiente == dato)
@@ -104,7 +104,7 @@ namespace ListasCirculares
                 {
                     Nodo nodoAnterior = BuscarAnterior(dato);
                     nodoAnterior.Enlace = nodoActual.Enlace;
-                    nodoActual.Enlace = null;
+                    nodoActual.Enlace = nodoInicial;
                 }
             }
         }
