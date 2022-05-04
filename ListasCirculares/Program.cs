@@ -1,1 +1,20 @@
-﻿
+﻿using ListasCirculares;
+
+Lista listas = new Lista();
+listas.AgregarNodo("Uno");
+listas.AgregarNodo("Dos");
+listas.AgregarNodo("Tres");
+listas.AgregarNodo("Cuatro");
+listas.AgregarNodo("Cinco");
+listas.AgregarNodo("Seis");
+listas.AgregarNodo("Siete");
+listas.AgregarNodo("Ocho");
+listas.AgregarNodo("Nueve");
+listas.AgregarNodo("Diez");
+Console.WriteLine(listas.RecorrerLista());
+Console.WriteLine("Buscando nodo Dos");
+Nodo nodoDos = listas.Buscar("Dos");
+Console.WriteLine(nodoDos.Dato);
+Console.WriteLine("Borrando Dos");
+listas.BorrarNodo("Dos");
+Console.WriteLine(listas.RecorrerLista());
