@@ -11,8 +11,8 @@ namespace ListasCirculares
         Nodo nodoInicial;
         Nodo nodoActual;
 
-        public Lista() 
-        { 
+        public Lista()
+        {
             nodoInicial = new Nodo();
             nodoInicial.Enlace = nodoInicial;
         }
@@ -33,7 +33,7 @@ namespace ListasCirculares
                 nodoActual = nodoActual.Enlace;
                 datosLista += $"{nodoActual.Siguiente}\n";
             }
-            return datosLista;  
+            return datosLista;
         }
         public void AgregarNodo(string dato)
         {
@@ -42,7 +42,7 @@ namespace ListasCirculares
             {
                 nodoActual = nodoActual.Enlace;
             }
-            Nodo nodoNuevo = new Nodo(dato,nodoInicial);
+            Nodo nodoNuevo = new Nodo(dato, nodoInicial);
             nodoActual.Enlace = nodoNuevo;
         }
         public Nodo Buscar(string dato)
@@ -97,10 +97,10 @@ namespace ListasCirculares
         }
         public void BorrarNodo(string dato)
         {
-            if (ValidaVacio() == false)
+            if(ValidaVacio() == false)
             {
                 nodoActual = Buscar(dato);
-                if (nodoActual != nodoInicial)
+                if(nodoActual != nodoInicial)
                 {
                     Nodo nodoAnterior = BuscarAnterior(dato);
                     nodoAnterior.Enlace = nodoActual.Enlace;
