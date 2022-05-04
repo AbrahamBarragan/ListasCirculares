@@ -11,48 +11,49 @@ namespace ListasCirculares
         Nodo nodoInicial;
         Nodo nodoActual;
 
-        public Lista()
-        {
+        public Lista() 
+        { 
             nodoInicial = new Nodo();
+            nodoInicial.Enlace = nodoInicial;
         }
         public bool ValidaVacio()
         {
-            return (nodoInicial.Dato == null);
+            return (nodoInicial.Enlace == nodoInicial);
         }
         public void Vaciar()
         {
-            nodoInicial.Dato = null;
+            nodoInicial.Enlace = nodoInicial;
         }
         public String RecorrerLista()
         {
             string datosLista = "";
             nodoActual = nodoInicial;
-            while (nodoActual.Dato != null)
+            while (nodoActual.Enlace != nodoInicial)
             {
-                nodoActual = nodoActual.Siguiente;
-                datosLista += $"{nodoActual.Dato}\n";
+                nodoActual = nodoActual.Enlace;
+                datosLista += $"{nodoActual.Siguiente}\n";
             }
             return datosLista;  
         }
         public void AgregarNodo(string dato)
         {
             nodoActual = nodoInicial;
-            while (nodoActual.Dato != null)
+            while (nodoActual.Enlace != nodoInicial)
             {
-                nodoActual = nodoActual.Siguiente;
+                nodoActual = nodoActual.Enlace;
             }
-            Nodo nodoNuevo = new Nodo(dato);
-            nodoActual.Dato = nodoNuevo;
+            Nodo nodoNuevo = new Nodo(dato,nodoInicial);
+            nodoActual.Enlace = nodoNuevo;
         }
         public Nodo Buscar(string dato)
         {
             if (ValidaVacio() == false)
             {
                 Nodo nodoBusqueda = nodoInicial;
-                while (nodoBusqueda.Dato != null)
+                while (nodoBusqueda.Enlace != nodoInicial)
                 {
-                    nodoBusqueda = nodoBusqueda.Siguiente;
-                    if (nodoBusqueda.Dato == dato)
+                    nodoBusqueda = nodoBusqueda.Enlace;
+                    if (nodoBusqueda.Siguiente == dato)
                     {
                         return nodoBusqueda;
                     }
@@ -66,9 +67,9 @@ namespace ListasCirculares
             if (ValidaVacio() == false)
             {
                 Nodo nodoBusqueda = nodoInicial;
-                while (nodoBusqueda.Dato != null)
+                while (nodoBusqueda.Enlace != nodoInicial)
                 {
-                    nodoBusqueda = nodoBusqueda.Siguiente;
+                    nodoBusqueda = nodoBusqueda.Enlace;
                     Indice++;
                     if (Indice == indice)
                     {
@@ -83,10 +84,10 @@ namespace ListasCirculares
             if (ValidaVacio() == false)
             {
                 Nodo nodoBusqueda = nodoInicial;
-                while (nodoBusqueda != null && nodoBusqueda.Dato != dato)
+                while (nodoBusqueda != nodoInicial && nodoBusqueda.Enlace.Siguiente != dato)
                 {
-                    nodoBusqueda = nodoBusqueda.Siguiente;
-                    if (nodoBusqueda.Dato == dato)
+                    nodoBusqueda = nodoBusqueda.Enlace;
+                    if (nodoBusqueda.Enlace.Siguiente == dato)
                     {
                         return nodoBusqueda;
                     }
@@ -99,11 +100,11 @@ namespace ListasCirculares
             if (ValidaVacio() == false)
             {
                 nodoActual = Buscar(dato);
-                if (nodoActual != null)
+                if (nodoActual != nodoInicial)
                 {
                     Nodo nodoAnterior = BuscarAnterior(dato);
-                    nodoAnterior.Dato = nodoActual.Dato;
-                    nodoActual.Dato = null;
+                    nodoAnterior.Enlace = nodoActual.Enlace;
+                    nodoActual.Enlace = null;
                 }
             }
         }
